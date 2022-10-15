@@ -6,6 +6,8 @@ const columns = {
     last_name: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
     email: { type: DataTypes.STRING, allowNull: false },
+    bio: {type: DataTypes.STRING(500), allowNull:false},
+    profile_photo_url: {type: DataTypes.STRING, allowNull:true},
     id : {type : DataTypes.INTEGER,autoIncrement:true,primaryKey:true}
 };
 
