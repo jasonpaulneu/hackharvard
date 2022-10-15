@@ -4,11 +4,17 @@
   "description": "Backend for HackHarvard 2022",
   "main": "index.js",
   "scripts": {
+    "start": "node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mysql2": "^2.3.3"
-  }
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.1"
+  },
+  "type": "module"
 }
