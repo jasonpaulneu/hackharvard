@@ -3,6 +3,7 @@ import HobbyRouter from  './Hobby-router.js';
 import TagRouter from './Tag-router.js';
 import UserTagRouter from './UserTag-router.js';
 import PassengerTagRouter from './Passenger-router.js';
+import ActionRouter from './Action-router.js';
 
 export default (app) =>{
     app.use("/",UserRouter);
@@ -10,4 +11,5 @@ export default (app) =>{
     app.use("/",TagRouter);
     app.use("/",UserTagRouter);
     app.use("/",PassengerTagRouter);
+    app.use("/",ActionRouter);
 }
