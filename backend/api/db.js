@@ -3,6 +3,7 @@ import User from './models/User.js';
 import Hobby from './models/Hobby.js';
 import Tag from './models/Tag.js';
 import UserTag from './models/UserTag.js';
+import Passenger from './models/Passenger.js';
 import * as dotenv from 'dotenv'
 
 
@@ -50,16 +51,22 @@ const dbInitialize = async () =>{
             allowNull:false
         }
     });
+    User.hasMany(Passenger,{
+        foreignKey:{
+            name:'userId',
+            allowNull:false
+        }
+    });
     Tag.hasMany(UserTag,{
         foreignKey:{
             name:'tagId',
             allowNull:false
         }
     });   
-
     await Hobby.sync({alter:true});
     await Tag.sync({alter:true});
     await UserTag.sync({alter:true});
+    await Passenger.sync({alter:true});
 }
 
 export {dbInitialize};
