@@ -4,6 +4,7 @@ import Hobby from './models/Hobby.js';
 import Tag from './models/Tag.js';
 import UserTag from './models/UserTag.js';
 import Passenger from './models/Passenger.js';
+import Action from './models/Action.js';
 import * as dotenv from 'dotenv'
 
 
@@ -57,6 +58,18 @@ const dbInitialize = async () =>{
             allowNull:false
         }
     });
+    User.hasMany(Action,{
+        foreignKey:{
+            name:'by',
+            allowNull:false
+        }
+    });
+    User.hasMany(Action,{
+        foreignKey:{
+            name:'for',
+            allowNull:false
+        }
+    });
     Tag.hasMany(UserTag,{
         foreignKey:{
             name:'tagId',
@@ -67,6 +80,7 @@ const dbInitialize = async () =>{
     await Tag.sync({alter:true});
     await UserTag.sync({alter:true});
     await Passenger.sync({alter:true});
+    await Action.sync({alter:true});
 }
 
 export {dbInitialize};
