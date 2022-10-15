@@ -1,6 +1,7 @@
 import mysql from 'mysql2/promise';
 import User from './models/User.js';
 import Hobby from './models/Hobby.js';
+import Tag from './models/Tag.js';
 import * as dotenv from 'dotenv'
 
 dotenv.config();
@@ -43,6 +44,7 @@ const dbInitialize = async () =>{
     });
 
     await Hobby.sync({alter:true});
+    await Tag.sync({alter:true});
 }
 
 export {dbInitialize};
