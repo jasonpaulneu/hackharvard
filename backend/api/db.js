@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise';
 import User from './models/User.js';
+import Hobby from './models/Hobby.js';
 import * as dotenv from 'dotenv'
 
 dotenv.config();
@@ -33,7 +34,15 @@ const dbInitialize = async () =>{
     await User.sync({ alter: true });
     console.log("created users table");
 
-    User.sync({alter:true});
+    await User.sync({alter:true});
+    User.hasMany(Hobby,{
+        foreignKey:{
+            name: 'userId',
+            allowNull: false
+        }
+    });
+
+    await Hobby.sync({alter:true});
 }
 
 export {dbInitialize};
