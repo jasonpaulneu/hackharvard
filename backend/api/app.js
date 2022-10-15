@@ -1,4 +1,5 @@
 import express from "express";
+import authMiddleware from "./auth-middleware.js";
 import cors from "cors";
 import { dbInitialize } from "./db.js";
 import routes from "./routes/index.js";
