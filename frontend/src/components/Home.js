@@ -7,6 +7,8 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
 
 import { useState } from 'react';
 import { uploadBytesResumable } from 'firebase/storage';
+import Navbar from "./generic/Navbar";
+import classes from './Home.module.css';
 
 const Home = () => {
   const [progressPercent, setProgressPercent] = useState(0);
@@ -50,6 +52,17 @@ const Home = () => {
 
   return (
     <>
+      <Navbar />
+      <div className={classes.mainContainer}>
+        <div className={classes.flightDetails}>
+            <div>
+              Flight Details
+            </div>
+        </div>
+        <div className={classes.homeImageContainer}>
+             <img src={require('../assets/HomeIcons.png')} className={classes.homeImage} /> 
+        </div>
+      </div>
       <div className="p-4 box mt-3 text-center">
         Hello Welcome <br />
       </div>
