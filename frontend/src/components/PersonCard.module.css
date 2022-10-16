@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+.profileCard {
+    border-radius: 1rem;
+    background: #FFE6D3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 1rem 1rem 1rem 1rem;
+    height:30rem;
+  }
+  
+.innerCardContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.profileImageContainer{
+    margin-right: 0.5rem;
+}
+
+.profileImage{
+    
+}
+
+.profileDetailsContainer{
+    margin-left:0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.tagRow{
+    display: flex;
+}
+.tagRow button{
+    margin: 1rem 0.5rem;
+}
+
+.hobbyRow{
+    display: flex;
+}
+.hobbyRow button{
+    margin: 1rem 0.5rem;
+}
+
+.title{
+    color: #C93408;
+    font-weight: bold;
+}
+
+.name{
+    color: #C93408;
+    font-size: 2rem;
+}
+
+.bio{
+    color: #FD6A00;   
+}
