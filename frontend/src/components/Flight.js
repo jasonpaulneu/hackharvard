@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Grid, Button } from '@mui/material';
-
 import Trip from './Trip';
 
-const Flight = () => {
+const Flight = (props) => {
     const [inputList, setInputList] = useState([<Trip />]);
     const addFlightInput = event => {
         setInputList(inputList.concat(<Trip />));
     };
-
+    
     return (
       <>
         <Grid container item spacing={1}>

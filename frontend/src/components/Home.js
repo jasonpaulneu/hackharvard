@@ -1,20 +1,48 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../context/userAuthContext";
-
 import { storage } from '../firebase-config'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
-
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { uploadBytesResumable } from 'firebase/storage';
+import {useSelector,useDispatch} from 'react-redux';
+import { userActions } from "../store/user_slice";
 import Navbar from "./generic/Navbar";
+import Flight from "./Flight";
 import classes from './Home.module.css';
+import axios from "axios";
 
-const Home = () => {
+
+const Home = (props) => {
   const [progressPercent, setProgressPercent] = useState(0);
+  const [flights, setFlights] = useState([]);
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loggedInUser = useSelector((state)=> state.user.loggedInUser)
 
+  useEffect(()=>{
+    const fetchUser = async () => {
+      await axios
+        .get(`http://localhost:9000/api/v1/user?email=${user.email}`)
+        .then(async (res) => {
+          dispatch(userActions.login(user));
+        });
+    };
+    fetchUser();
+  },[user])
+  
+
+  useEffect(() => {
+    const fetchMyFlights = async () => {
+      await axios
+        .get(`http://localhost:9000/api/v1/passenger?userId=${loggedInUser.id}`)
+        .then(async (res) => {
+          setFlights(res.data);
+        });
+    };
+    fetchMyFlights();
+  }, [loggedInUser]);
   
   const handleLogout = async () => {
     try {
@@ -58,13 +86,11 @@ const Home = () => {
             <div>
               Flight Details
             </div>
+            <Flight />
         </div>
         <div className={classes.homeImageContainer}>
              <img src={require('../assets/HomeIcons.png')} className={classes.homeImage} /> 
         </div>
-      </div>
-      <div className="p-4 box mt-3 text-center">
-        Hello Welcome <br />
       </div>
       <div className="p-4 box mt-3" name='upload_file'>
         <form className='app__form' name='upload_file' onSubmit={handleSubmit}>
