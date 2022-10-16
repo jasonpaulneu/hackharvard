@@ -8,13 +8,15 @@ import Signup from "./components/Signup";
 import LandingPage from "./components/LandingPage";
 import Flight from "./components/Flight";
 import PeoplePage from "./components/PeoplePage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import React from "react";
 
 function App() {
   return (
     <UserAuthContextProvider>
     <Routes>
      <Route path="/" element={<LandingPage />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       <Route path="/flight" element={<Flight />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
