@@ -44,7 +44,7 @@ const Login = () => {
               </div>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className={classes.formLabel}>Email address</Form.Label>
+                  <Form.Label className={classes.formLabel}>Email address</Form.Label>
                   <Form.Control
                     className={classes.formInput}
                     type="email"
@@ -54,7 +54,7 @@ const Login = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label className={classes.formLabel}>Password</Form.Label>
+                  <Form.Label className={classes.formLabel}>Password</Form.Label>
                   <Form.Control
                     className={classes.formInput}
                     type="password"
@@ -67,9 +67,12 @@ const Login = () => {
                     Log In
                   </Button>
                 </div> */}
-                 {error && <Alert variant="danger">{error}</Alert>}
+                {error && <Alert variant="danger">{error}</Alert>}
                 <div className={classes.btnLogin}>
                   <DarkButton btnText='Login' type="Submit" />
+                </div>
+                <div className="p-4 box mt-3 text-center">
+                  Don't have an account? <Link to="/signup">Sign up</Link>
                 </div>
               </Form>
             </div>
@@ -77,9 +80,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="p-4 box mt-3 text-center">
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </div>
+
     </>
   );
 };
