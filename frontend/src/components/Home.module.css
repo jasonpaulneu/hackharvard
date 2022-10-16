@@ -2,12 +2,15 @@
     display: flex;
     flex-direction:row;
     justify-content: space-between;
+    /* align-items: center; */
     width: 80%;
     margin: auto;
+
 }
 
 .flightDetails{
     width: 50%;
+    margin-top: 5rem;
 }
 
 .homeImageContainer{
@@ -18,8 +21,20 @@
     /* justify-content: flex-end;
     align-items: flex-end; */
     height: 50%;
+    position: absolute;
+    bottom: 0px
 }
 
 .header{
     color: #C93408;
+}
+
+.title {
+    color: #C93408;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.flightCardsSection{
+    margin-top:2rem;
 }

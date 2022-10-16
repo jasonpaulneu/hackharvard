@@ -13,15 +13,6 @@ const ProtectedRoute =  ({ children }) => {
   if (!user) {
     return <Navigate to="/" />;
   }
-
-  // const fetchUser = async () => {
-  //   await axios
-  //     .get(`http://localhost:9000/api/v1/user?email=${user.email}`)
-  //     .then(async (res) => {
-  //       dispatch(userActions.login(user));
-  //     });
-  // };
-  // fetchUser();
   return children;
 };
 

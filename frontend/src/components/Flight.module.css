@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width:70%;
+}
+
+.inputRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom:1rem;
+}
+
+.btnRow{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btnRow > button {
+    width:8rem;
+}
+
+.formControl{
+    display: flex;
+    flex-direction: column;
+}
+
+.formControl>label {
+    color: #FD6A00;
+    margin-bottom: 0.5rem;
+}
+
+.inputField {
+    color: #FD6A00;
+    font-size: 1rem;
+    border: 1px solid #FD6A00 !important;
+    border-radius: 5px;
+}
