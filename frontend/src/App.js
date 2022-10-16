@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import LandingPage from "./components/LandingPage";
+import Flight from "./components/Flight";
 import PeoplePage from "./components/PeoplePage";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <Routes>
      <Route path="/" element={<LandingPage />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/flight" element={<Flight />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/people" element={<PeoplePage />} />
