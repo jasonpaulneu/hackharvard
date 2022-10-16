@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+.container {
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgba(217, 217, 217, 0.12); */
+    background-color: white;
+    height: 100vh;
+    width: 100wh;
+}
+
+.navRow {
+    width: 80%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo {
+    width: 5rem
+}
+
+.title {
+    color: #C93408;
+    font-weight: bold;
+    margin: 0.5rem 1rem;
+}
+
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 1rem 1rem;
+    height: 100%;
+    /* overflow: scroll; */
+}
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin: 0.5rem 0rem;
+}
+
+.formControl {
+    display: flex;
+    flex-direction: column;
+}
+
+.formControl>label {
+    color: #FD6A00;
+    margin-bottom: 0.5rem;
+}
+
+.inputField {
+    color: #FD6A00;
+    font-size: 1rem;
+    border: 1px solid #FD6A00 !important;
+    border-radius: 5px;
+}
+
+.autocomplete {
+    width: 30rem;
+}
+
+.bio {
+    width: 30rem;
+}
+
+.logInSection {
+    color: #EC3A05;
+}
+
+.logInSection a {
+    text-decoration: none;
+    color: #EC3A05;
+}
+
+.logInSection button {
+    z-index: 3;
+}
+
+.signUpImg {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 650px;
+    width: 800px;
+}

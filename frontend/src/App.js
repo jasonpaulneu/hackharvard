@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import LandingPage from "./components/LandingPage";
 import Flight from "./components/Flight";
+import PeoplePage from "./components/PeoplePage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/flight" element={<Flight />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/people" element={<PeoplePage />} />
     </Routes>
   </UserAuthContextProvider>
     // <Container style={{ width: "400px" }}>

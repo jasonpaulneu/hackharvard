@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+.mainContainer{
+    display: flex;
+    flex-direction:column;
+    height: 800px;
+    margin: auto;
+    width:80%;
+}
+
+.flightDetails{
+    width: 50%;
+}
+
+.flightNum{
+    color: #C93408;
+    margin:1rem 0rem;
+}
+
+.homeImageContainer{
+   width: 50%;
+}
+
+.homeImage{
+    /* justify-content: flex-end;
+    align-items: flex-end; */
+    height: 50%;
+}
+
+.header{
+    color: #C93408;
+}
