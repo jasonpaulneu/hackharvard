@@ -71,8 +71,8 @@ const Login = () => {
                 <div className={classes.btnLogin}>
                   <DarkButton btnText='Login' type="Submit" />
                 </div>
-                <div className="p-4 box mt-3 text-center">
-                  Don't have an account? <Link to="/signup">Sign up</Link>
+                <div className={`p-4 ${classes.signupTxt} box mt-3 text-center`}>
+                  Don't have an account? <Link to="/signup" style={{ textDecoration: 'none', color: '#C93408', fontWeight:'600' }}>Sign up</Link>
                 </div>
               </Form>
             </div>
