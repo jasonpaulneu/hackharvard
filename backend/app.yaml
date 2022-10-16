@@ -1,6 +1,13 @@
 runtime: nodejs16
 env: standard
 instance_class: F1
+
+env_variables:
+  MYSQL_HOST: "34.66.148.107"
+  MYSQL_USER: "root"
+  MYSQL_PASSWORD: "heXwij-8devwu-fosqet"
+  MYSQL_DATABASE: "floak"
+
 automatic_scaling:
   min_idle_instances: automatic
   max_idle_instances: automatic
