@@ -5,22 +5,25 @@ import "./App.css";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   return (
-    <Container style={{ width: "400px" }}>
-      <Row>
-        <Col>
-          <UserAuthContextProvider>
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </Routes>
-          </UserAuthContextProvider>
-        </Col>
-      </Row >
-    </Container >
+    <UserAuthContextProvider>
+    <Routes>
+     <Route path="/" element={<LandingPage />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
+  </UserAuthContextProvider>
+    // <Container style={{ width: "400px" }}>
+    //   <Row>
+    //     <Col>
+
+        // </Col>
+      //</Row >
+    //</Container > }
   );
 }
 
