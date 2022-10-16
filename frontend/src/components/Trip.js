@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { TextField, Grid } from '@mui/material';
+import classes from './Trip.module.css';
 
-const Trip = () => {
-    const [flightNumber, setFlightNumber] = useState("");
-    const [date, setDate] = useState("");
+const Trip = (props) => {
+
     return (
       <>
-        <Grid container item spacing={3}>
-            <TextField id="standard-basic" label="Flight Number" variant="standard" onChange={(e) => setFlightNumber(e.target.value)} />
-            <TextField id="standard-basic" type="date" label="Date of Departure" variant="standard" onChange={(e) => setDate(e.target.value)}  />
-        </Grid>
+      <div className={classes.tripCard}>
+          <div className={classes.info}>
+              <label>Flight No: </label>
+              <label>{props.flight_number}</label>
+          </div>
+          <div className={classes.info}>
+              <label>Date of Departure</label>
+              <label>{props.departure_dateTime}</label>
+          </div>
+      </div>
       </>
     );
   };

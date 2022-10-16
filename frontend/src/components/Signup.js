@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import classes from './Signup.module.css';
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/userAuthContext";
-
 import TextField from '@mui/material/TextField';
 import { FormControl, Input, InputLabel, FormHelperText, Grid, Autocomplete } from '@mui/material';
 import DarkButton from "./generic/DarkButton";
+import axios from 'axios';
 
 const Signup = () => {
   const [error, setError] = useState("");
@@ -17,28 +17,110 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const intentions = ['dating', 'networking', 'friendship'];
-  const hobbies = ['reading', 'hiking', 'cooking'];
+  const [listOfTags, setListOfTags] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [hobbies, setHobbies] = useState([]);
+  const listOfHobbies = ['Reading', 'Working Out', 'Cooking', 'Hiking', 'Podcasts'];
   const [bio, setBio] = useState("");
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      await axios
+        .get(`http://localhost:9000/api/v1/tag`)
+        .then(async (res) => {
+          setListOfTags(res.data);
+        });
+    };
+    fetchTags();
+  }, []);
+  
   const handleBioChange = (event) => {
     setBio(event.target.value);
   };
 
-
-  let navigate = useNavigate();
- 
-  const handleLoginOnClick = () => {
-      navigate('/login');
+  const handleTagsOnChange = (event,values) =>{
+    const selectedtags= values.map(value =>value.id);
+    setTags(selectedtags);
   }
 
-  const handleSubmit = async (e) => {
+  const handleHobbiesOnChange = (event,values) =>{
+    const selectedHobbies= values.map(value =>value);
+    setHobbies(selectedHobbies);
+  }
+
+
+  let navigate = useNavigate();
+
+  const handleOnCreateAccountClick = async (e) => {
     e.preventDefault();
     setError("");
     try {
       await signUp(email, password);
-      navigate("/");
+      
+      const user={
+        first_name:firstName,
+        last_name: lastName,
+        email: email,
+        password:password,
+        bio:bio
+      }
+
+      const postUser = async (user) => {
+        return await axios({
+          method: "POST",
+          url: "http://localhost:9000/api/v1/user",
+          data: user,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            accept: "*/*",
+          },
+          validateStatus: (status) => {
+            return true;
+          },
+        }).catch((err) => console.log(err.data));
+      };
+
+      const postTag = async (tagId,userId) =>{
+        return await axios({
+          method: "POST",
+          url: "http://localhost:9000/api/v1/usertag",
+          data: {userId,tagId},
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            accept: "*/*",
+          },
+          validateStatus: (status) => {
+            return true;
+          },
+        }).catch((err) => console.log(err.data));
+      }
+
+      const postHobby = async (hobby,userId) =>{
+        return await axios({
+          method: "POST",
+          url: "http://localhost:9000/api/v1/hobby",
+          data: {hobby,userId},
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            accept: "*/*",
+          },
+          validateStatus: (status) => {
+            return true;
+          },
+        }).catch((err) => console.log(err.data));
+      }
+      const newUser =await postUser(user);
+
+      tags.forEach(tagId => postTag(tagId, newUser.data.id));
+
+      hobbies.forEach(hobby => postHobby(hobby,newUser.data.id));
+
+      navigate("/home");
     } catch (err) {
-      setError(err.message);
+      setError("There was an error when signing up user in Firebase");
     }
   };
 
@@ -87,9 +169,9 @@ const Signup = () => {
               className={classes.autocomplete}
               multiple
               id="tags-standard"
-              options={intentions}
-              getOptionLabel={(option) => option}
-              defaultValue={[intentions[0]]}
+              options={listOfTags}
+              getOptionLabel={(option) => option.tag}
+              // defaultValue={[intentions[0]]}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -98,6 +180,7 @@ const Signup = () => {
                   placeholder="Tags"
                 />
               )}
+              onChange={handleTagsOnChange}
               sx={{
                 "& .MuiChip-labelMedium": {
                   color: "white"
@@ -117,7 +200,6 @@ const Signup = () => {
               id="filled-multiline-flexible"
               multiline
               rows={5}
-              maxRows={5}
               value={bio}
               onChange={handleBioChange}
               variant="filled"
@@ -134,9 +216,8 @@ const Signup = () => {
               className={classes.autocomplete}
               multiple
               id="hobbies-standard"
-              options={hobbies}
+              options={listOfHobbies}
               getOptionLabel={(option) => option}
-              defaultValue={[hobbies[0]]}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -153,6 +234,7 @@ const Signup = () => {
                   background: "#F89F5F"
                 }
               }}
+              onChange={handleHobbiesOnChange}
             />
             </div>
           </div>
@@ -163,7 +245,7 @@ const Signup = () => {
             </div>
           </div>
           <div className={`${classes.logInSection} ${classes.formRow}`}>
-          Already have an account? <b><DarkButton btnText='Log In' onClick={handleLoginOnClick} /></b>
+          Already have an account? <b><Link to="/login">Login</Link></b> <DarkButton btnText='Create Account' onClick={handleOnCreateAccountClick} />
         </div>
         </div>
       </div>

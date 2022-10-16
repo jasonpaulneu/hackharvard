@@ -1,30 +1,57 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../context/userAuthContext";
-
 import { storage } from '../firebase-config'
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage"
-
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { uploadBytesResumable } from 'firebase/storage';
 import Navbar from "./generic/Navbar";
 import classes from './PeoplePage.module.css';
 import PersonCard from "./PersonCard";
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+
 
 const PeoplePage = () => {
   const [progressPercent, setProgressPercent] = useState(0);
+  const [flights, setFlights] = useState([]);
+  const [copassengers, setCopassengers] = useState([]);
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
+  const loggedInUser = useSelector((state) => state.user.loggedInUser);
 
-  
-  const handleLogout = async () => {
-    try {
-      await logOut();
-      navigate("/");
-    } catch (error) {
-      console.log(error.message);
+
+  //first get flights for the user
+  useEffect(() => {
+    const fetchMyFlights = async () => {
+      if (loggedInUser) {
+        await axios
+          .get(`http://localhost:9000/api/v1/passenger?userId=${loggedInUser.id}`)
+          .then(async (res) => {
+            setFlights(res.data);
+          });
+      }
+    };
+    fetchMyFlights();
+  }, [loggedInUser]);
+
+  const fetchPassengersForFlight = async (flight_num) => {
+    if (loggedInUser) {
+      await axios
+        .get(`http://localhost:9000/api/v1/flightpassenger/${flight_num}`)
+        .then((res) =>  res.data);
     }
   };
+
+  //get passengers in each flight
+  useEffect(() => {
+   flights.forEach(async (flight)=>{
+    const passengers = await fetchPassengersForFlight(flight.flight_num);
+    setCopassengers(copassengers.concat(passengers));
+   })
+  }, [flights,loggedInUser]);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -51,6 +78,8 @@ const PeoplePage = () => {
     )
   } 
 
+  const personCards = copassengers.map(p => <PersonCard person={p}/>)
+
   return (
     <>
       <Navbar />
@@ -58,7 +87,8 @@ const PeoplePage = () => {
         <div className={classes.flightNum}>
         DL 40378  ( 18th Jan)
         </div>
-        <PersonCard />
+         <PersonCard /> 
+        {/* {personCards} */}
       </div>
       {/* <div className="p-4 box mt-3 text-center">
         Hello Welcome <br />

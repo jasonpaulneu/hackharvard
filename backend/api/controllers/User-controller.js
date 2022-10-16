@@ -11,3 +11,14 @@ export const createUser = (req,res) =>{
        }
         )
     };
+
+export const getUserByEmail = (req,res) =>{
+        const email = req.query.email;
+        UserService.getUserByEmail(email).then((user)=>{
+            res.status(200);
+            res.json(user)
+        }).catch(e=>{
+            res.status(500);
+            res.json(e);
+        })
+    }

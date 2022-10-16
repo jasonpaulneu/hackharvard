@@ -1,4 +1,3 @@
-// const firebase = require("./firebase/admin");
 import { getAuth } from 'firebase-admin/auth'
 
 export default function authMiddleware(request, response, next) {
@@ -13,9 +12,6 @@ export default function authMiddleware(request, response, next) {
 
   const token = headerToken.split(" ")[1];
  getAuth().verifyIdToken(token)
-    .verifyIdToken(token)
     .then(() => next())
     .catch(() => response.send({ message: "Could not authorize" }).status(403));
 }
-
-// module.exports = authMiddleware;

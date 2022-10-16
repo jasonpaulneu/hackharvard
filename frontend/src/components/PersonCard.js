@@ -1,6 +1,8 @@
 import classes from './PersonCard.module.css';
 import MiniDarkButton from './generic/MiniDarkButton';
 import { useState } from 'react';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
 function PersonCard(props) {
     const [tags,setTags] = useState(['Networking','Dating']);
@@ -32,9 +34,12 @@ function PersonCard(props) {
                 <div className={classes.hobbyRow}>
                     {miniHobbies}
                 </div>
-                <div></div>
             </div>
         </div>
+        <div className={classes.btnRow}>
+                    <FavoriteBorderIcon style={{fontSize:"50px", color:"#C93408", padding:"0.5rem 0.5rem"}} />
+                    <ThumbDownOffAltIcon style={{fontSize:"50px", color:"#C93408", padding:"0.5rem 0.5rem"}}/>
+                </div>
     </div>)
 }
 
