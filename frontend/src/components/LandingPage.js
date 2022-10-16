@@ -6,8 +6,11 @@ import { useNavigate } from 'react-router-dom';
 function LandingPage(props) {
     const navigate = useNavigate();
     const handleLoginOnClick = () => {
-        console.log("IN HANDLE LOG IN")
         navigate('/login');
+    }
+
+    const handleSignUpOnClick = () => {
+        navigate('/signup');
     }
 
     return (
@@ -28,7 +31,7 @@ function LandingPage(props) {
                     </div>
                     <div className={classes.btnRow}>
                         <LightButton btnText='Login' onClick={handleLoginOnClick} />
-                        <DarkButton btnText='Sign Up' />
+                        <DarkButton btnText='Sign Up' onClick={handleSignUpOnClick} />
                     </div>
                 </div>
             </div>
